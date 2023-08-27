@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskList from './components/TaskList';
 import TaskInput from './components/TaskInput';
-import FooterButtons from './components/FilterButtons';
+import FilterButtons from './components/FilterButtons';
+import DeleteButtons from './components/DeleteButtons';
+import './App.css';
+
+
 
 function App() {
     const [tasks, setTasks] = useState([]);
@@ -43,14 +47,6 @@ function App() {
             });
     };
 
-    const handleEditTask = (taskId, newName) => {
-        const updatedTasks = tasks.map(task =>
-            task.id === taskId ? { ...task, name: newName } : task
-        );
-        setTasks(updatedTasks);
-        // Additionally, update on the backend as needed
-    };
-
     const handleFilter = (type) => {
         setFilter(type);
     };
@@ -73,6 +69,19 @@ function App() {
         });
     };
 
+    const handleEditTask = (id, newName) => {
+        const taskToUpdate = tasks.find(task => task.id === id);
+        const updatedTask = { ...taskToUpdate, name: newName };
+
+        axios.put(`http://localhost:8080/api/tasks/${id}`, updatedTask)
+            .then(response => {
+                const updatedTasks = tasks.map(t =>
+                    t.id === id ? response.data : t
+                );
+                setTasks(updatedTasks);
+            });
+    };
+
     const filteredTasks = tasks.filter(task => {
         if (filter === 'completed') return task.completed;
         if (filter === 'todo') return !task.completed;
@@ -81,20 +90,27 @@ function App() {
 
     return (
         <div className="App">
-            <TaskInput onAdd={handleAddTask} />
-            <TaskList
-                tasks={filteredTasks}
-                onToggle={handleToggleTask}
-                onDelete={handleDeleteTask}
-                onEdit={handleEditTask}
-            />
-            <FooterButtons
-                onFilter={handleFilter}
-                onDeleteDone={handleDeleteDoneTasks}
-                onDeleteAll={handleDeleteAllTasks}
-            />
+            <h1>Todo Input</h1>
+            <div className="main-container">
+                <TaskInput onAdd={handleAddTask} />
+
+                <h2>TodoList</h2>
+
+                <FilterButtons onFilter={handleFilter} />
+                <TaskList
+                    tasks={filteredTasks}
+                    onToggle={handleToggleTask}
+                    onDelete={handleDeleteTask}
+                    onEdit={handleEditTask}
+                />
+                <DeleteButtons
+                    onDeleteDone={handleDeleteDoneTasks}
+                    onDeleteAll={handleDeleteAllTasks}
+                />
+            </div>
         </div>
     );
+
 }
 
 export default App;
