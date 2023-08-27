@@ -43,6 +43,14 @@ function App() {
             });
     };
 
+    const handleEditTask = (taskId, newName) => {
+        const updatedTasks = tasks.map(task =>
+            task.id === taskId ? { ...task, name: newName } : task
+        );
+        setTasks(updatedTasks);
+        // Additionally, update on the backend as needed
+    };
+
     const handleFilter = (type) => {
         setFilter(type);
     };
@@ -57,7 +65,6 @@ function App() {
         });
     };
 
-
     const handleDeleteAllTasks = () => {
         const deletePromises = tasks.map(task => axios.delete(`http://localhost:8080/api/tasks/${task.id}`));
 
@@ -65,7 +72,6 @@ function App() {
             setTasks([]); // Clear all tasks from state after ensuring all deletions are complete
         });
     };
-
 
     const filteredTasks = tasks.filter(task => {
         if (filter === 'completed') return task.completed;
@@ -80,6 +86,7 @@ function App() {
                 tasks={filteredTasks}
                 onToggle={handleToggleTask}
                 onDelete={handleDeleteTask}
+                onEdit={handleEditTask}
             />
             <FooterButtons
                 onFilter={handleFilter}

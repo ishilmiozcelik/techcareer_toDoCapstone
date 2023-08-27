@@ -1,22 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function TaskList({ tasks, onToggle, onEdit, onDelete }) {
+function TaskList({ tasks, onToggle, onDelete, onEdit }) {
+    const [editTaskId, setEditTaskId] = useState(null);
+    const [editedName, setEditedName] = useState('');
+
     return (
-        <ul>
+        <div>
             {tasks.map(task => (
-                <li key={task.id}>
-                    <input
-                        type="checkbox"
-                        checked={task.completed}
-                        onChange={() => onToggle(task.id)}
-                    />
-                    <span onDoubleClick={() => onEdit(task.id)}>
-                        {task.name}
-                    </span>
+                <div key={task.id}>
+                    {editTaskId === task.id ? (
+                        <>
+                            <input
+                                type="text"
+                                value={editedName}
+                                onChange={e => setEditedName(e.target.value)}
+                            />
+                            <button onClick={() => {
+                                onEdit(task.id, editedName);
+                                setEditTaskId(null);
+                            }}>Save</button>
+                        </>
+                    ) : (
+                        <>
+                            <span onClick={() => onToggle(task.id)}>
+                                {task.completed ? "✓" : "○"} {task.name}
+                            </span>
+                            <button onClick={() => {
+                                setEditedName(task.name);
+                                setEditTaskId(task.id);
+                            }}>Edit</button>
+                        </>
+                    )}
                     <button onClick={() => onDelete(task.id)}>Delete</button>
-                </li>
+                </div>
             ))}
-        </ul>
+        </div>
     );
 }
 
