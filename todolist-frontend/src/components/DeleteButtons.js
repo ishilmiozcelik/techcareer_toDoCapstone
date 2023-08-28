@@ -1,4 +1,5 @@
 import React from 'react';
+import './DeleteButtons.css';
 
 function DeleteButtons({ onDeleteDone, onDeleteAll }) {
     return (
