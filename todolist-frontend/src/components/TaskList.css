@@ -1,0 +1,22 @@
+.tasks-list {
+    width: 60%;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0; /* This will add some space between tasks */
+}
+
+.task-content {
+    flex: 1;
+    display: flex;
+    align-items: center; /* Aligns the content vertically centered */
+    cursor: pointer;
+}
+
+.task-actions {
+    display: flex;
+    gap: 20px;
+}
