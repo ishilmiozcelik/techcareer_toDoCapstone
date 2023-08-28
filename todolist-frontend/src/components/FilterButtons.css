@@ -5,9 +5,8 @@
 }
 
 .filter-button {
-    width: 150px;       /* Set the width */
-    height: 35px;      /* Set the height */
-    padding: 8px 16px; /* Optional padding for top/bottom and left/right respectively */
-    /* ... any other styles you want ... */
-    text-align: center;  /* Ensures the text is centered within the button */
+    width: 150px;
+    height: 35px;
+    padding: 8px 16px;
+    text-align: center;
 }
