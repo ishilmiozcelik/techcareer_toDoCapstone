@@ -20,3 +20,26 @@
     display: flex;
     gap: 20px;
 }
+
+.edit-button{
+    width: 50px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: yellow;
+    color: black;
+}
+
+.delete-button{
+    width: 50px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #f56565;
+    color: white;
+
+}

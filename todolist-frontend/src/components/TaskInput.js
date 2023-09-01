@@ -21,7 +21,7 @@ function TaskInput({ onAdd }) {
                 placeholder="Enter task name..."
                 onChange={(e) => setName(e.target.value)}
             />
-            <button onClick={handleSubmit}>
+            <button className="input-button" onClick={handleSubmit}>
                 Add New Task
             </button>
         </div>

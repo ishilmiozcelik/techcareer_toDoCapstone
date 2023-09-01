@@ -6,8 +6,6 @@ import FilterButtons from './components/FilterButtons';
 import DeleteButtons from './components/DeleteButtons';
 import './App.css';
 
-
-
 function App() {
     const [tasks, setTasks] = useState([]);
     const [filter, setFilter] = useState("all");

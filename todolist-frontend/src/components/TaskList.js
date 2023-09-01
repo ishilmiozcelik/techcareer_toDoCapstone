@@ -30,12 +30,12 @@ function TaskList({ tasks, onToggle, onDelete, onEdit }) {
                                 setEditTaskId(null);
                             }}>Save</button>
                         ) : (
-                            <button onClick={() => {
+                            <button className="edit-button" onClick={() => {
                                 setEditedName(task.name);
                                 setEditTaskId(task.id);
-                            }}>Edit</button>
+                            }}>edit</button>
                         )}
-                        <button onClick={() => onDelete(task.id)}>Delete</button>
+                        <button className="delete-button" onClick={() => onDelete(task.id)}>delete</button>
                     </div>
                 </div>
             ))}

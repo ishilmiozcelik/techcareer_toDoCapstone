@@ -6,10 +6,10 @@
 
 .filter-button {
     width: 150px;
-    height: 45px;
+    height: 30px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background-color: blue;
     color: white;

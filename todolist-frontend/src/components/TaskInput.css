@@ -3,10 +3,24 @@
     flex-direction: column;
     gap: 10px;
     border: 1px solid black;
+    border-radius: 30px;
     width: 60%;
     margin: 0 auto;
     align-items: center;
-    padding: 25px 0px 25px 0px;
+    padding: 40px 0px 40px 0px;
+
+}
+
+.input-button{
+    width: 150px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+
 
 }
 
