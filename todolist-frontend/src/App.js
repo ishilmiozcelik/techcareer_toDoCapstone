@@ -63,7 +63,7 @@ function App() {
         const deletePromises = tasks.map(task => axios.delete(`http://localhost:8080/api/tasks/${task.id}`));
 
         Promise.all(deletePromises).then(() => {
-            setTasks([]); // Clear all tasks from state after ensuring all deletions are complete
+            setTasks([]);
         });
     };
 
