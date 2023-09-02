@@ -40,6 +40,7 @@ function TaskList({ tasks, onToggle, onDelete, onEdit }) {
                                 setEditTaskId(task.id);
                             }}>edit</button>
                         )}
+
                         <button className="delete-button" onClick={() => onDelete(task.id)}>delete</button>
                     </div>
                 </div>
