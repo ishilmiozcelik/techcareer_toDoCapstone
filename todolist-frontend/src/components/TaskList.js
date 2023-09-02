@@ -10,6 +10,7 @@ function TaskList({ tasks, onToggle, onDelete, onEdit }) {
             {tasks.map(task => (
                 <div key={task.id} className="task">
                     {editTaskId === task.id ? (
+                        //edit modundaysa task adını düzenlemek için girdiyi oluştur
                         <div className="task-content">
                             <input
                                 type="text"
@@ -18,6 +19,7 @@ function TaskList({ tasks, onToggle, onDelete, onEdit }) {
                             />
                         </div>
                     ) : (
+                        //// edit modunda değilse görev adını ve tamamlanma durumunu görüntüle
                         <div className="task-content" onClick={() => onToggle(task.id)}>
                             {task.completed ? "✓" : "○"} {task.name}
                         </div>
@@ -25,11 +27,13 @@ function TaskList({ tasks, onToggle, onDelete, onEdit }) {
 
                     <div className="task-actions">
                         {editTaskId === task.id ? (
+                            //edit modundaki taskler için save butonu
                             <button onClick={() => {
                                 onEdit(task.id, editedName);
                                 setEditTaskId(null);
                             }}>Save</button>
                         ) : (
+                            //edit modunda olmayan taskler için edit butonu
                             <button className="edit-button" onClick={() => {
                                 setEditedName(task.name);
                                 setEditTaskId(task.id);

@@ -10,6 +10,7 @@ function App() {
     const [tasks, setTasks] = useState([]);
     const [filter, setFilter] = useState("all");
 
+    //backendden taskleri getirme işlemi
     useEffect(() => {
         axios.get('http://localhost:8080/api/tasks')
             .then(response => {
@@ -17,6 +18,7 @@ function App() {
             });
     }, []);
 
+    //yeni task eklememizi sağlayan fonksiyon
     const handleAddTask = (name) => {
         axios.post('http://localhost:8080/api/tasks', { name, completed: false })
             .then(response => {
@@ -24,6 +26,7 @@ function App() {
             });
     };
 
+    //task tamamlanma durumunu değiştirmemizi sağlayan fonksiyon
     const handleToggleTask = (id) => {
         const task = tasks.find(t => t.id === id);
         const updatedTask = { ...task, completed: !task.completed };
@@ -37,6 +40,7 @@ function App() {
             });
     };
 
+    //id'ye göre task silme
     const handleDeleteTask = (id) => {
         axios.delete(`http://localhost:8080/api/tasks/${id}`)
             .then(() => {
@@ -45,10 +49,12 @@ function App() {
             });
     };
 
+    //taskleri filtreleme
     const handleFilter = (type) => {
         setFilter(type);
     };
 
+    //tamamlanmış tasklerimizi silmemizi sağlayan fonksiyon
     const handleDeleteDoneTasks = () => {
         const doneTasks = tasks.filter(task => task.completed);
         const deletePromises = doneTasks.map(task => axios.delete(`http://localhost:8080/api/tasks/${task.id}`));
@@ -59,6 +65,7 @@ function App() {
         });
     };
 
+    //tüm tasklerimizi silmemizi sağlayan fonksiyon
     const handleDeleteAllTasks = () => {
         const deletePromises = tasks.map(task => axios.delete(`http://localhost:8080/api/tasks/${task.id}`));
 
@@ -67,6 +74,7 @@ function App() {
         });
     };
 
+    //task'i editlememizi sağlayan fonksiyon
     const handleEditTask = (id, newName) => {
         const taskToUpdate = tasks.find(task => task.id === id);
         const updatedTask = { ...taskToUpdate, name: newName };
@@ -80,12 +88,15 @@ function App() {
             });
     };
 
+    //varsayılan filtreleme özelliklerine göre filtrele
     const filteredTasks = tasks.filter(task => {
         if (filter === 'completed') return task.completed;
         if (filter === 'todo') return !task.completed;
         return true;
     });
 
+
+    //önyüz render
     return (
         <div className="App">
             <h1>Todo Input</h1>
