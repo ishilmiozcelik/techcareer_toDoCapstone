@@ -29,10 +29,10 @@ function TaskList({ tasks, onToggle, onDelete, onEdit }) {
                     <div className="task-actions">
                         {editTaskId === task.id ? (
                             //edit modundaki taskler için save butonu
-                            <button onClick={() => {
+                            <button className="save-button" onClick={() => {
                                 onEdit(task.id, editedName);
                                 setEditTaskId(null);
-                            }}>Save</button>
+                            }}>save</button>
                         ) : (
                             //edit modunda olmayan taskler için edit butonu
                             <button className="edit-button" onClick={() => {
