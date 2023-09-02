@@ -8,4 +8,6 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task>findByCompleted(boolean status);
+    //tamamlanma durumuna göre tüm görevleri alır
+    //JPA ile bu methodu sorguya çevirir
 }

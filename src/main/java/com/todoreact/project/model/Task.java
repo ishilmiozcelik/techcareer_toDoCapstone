@@ -12,10 +12,12 @@ import jakarta.persistence.Id;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id;
-    private String name;
-    private boolean completed;
+    private Long id; //task id
+    private String name; //task ismi
+    private boolean completed; //task durumu
 
+
+    //constructors, getter/setters
     public Task(){
     }
 
